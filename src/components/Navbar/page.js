@@ -18,7 +18,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <Link className="navbar-brand" href={`/${locale}`}>
-          Brasper
+          Nito
         </Link>
         <button
           className="navbar-toggler"
