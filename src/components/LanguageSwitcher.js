@@ -1,13 +1,18 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function LanguageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
   const locales = ["en", "es"];
+
+  // Mapeo de idiomas a labels personalizados y rutas de banderas
+  const localeData = {
+    en: { label: "English", flag: "/flags/en.png" },
+    es: { label: "Español", flag: "/flags/es.png" },
+  };
 
   // Obtén el locale actual de la URL directamente
   const currentLocale = pathname.split("/")[1] || "en";
@@ -32,19 +37,21 @@ export default function LanguageSwitcher() {
 
   return (
     <div className="d-flex justify-content-end align-items-center">
-      <label htmlFor="languageSwitcher" className="me-2 text-white">
-        Idioma:
-      </label>
       <select
         id="languageSwitcher"
         value={currentLocale}
         onChange={handleLocaleChange}
         className="form-select"
-        style={{ maxWidth: "150px" }}
+        style={{ maxWidth: "200px" }}
       >
         {sortedLocales.map((loc) => (
           <option key={loc} value={loc}>
-            {loc.toUpperCase()}
+            <img
+              src={localeData[loc].flag}
+              alt={`${localeData[loc].label} flag`}
+              style={{ width: "20px", marginRight: "8px" }}
+            />
+            {localeData[loc].label}
           </option>
         ))}
       </select>
