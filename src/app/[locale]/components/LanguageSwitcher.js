@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function LanguageSwitcher() {
@@ -8,14 +9,14 @@ export default function LanguageSwitcher() {
   const pathname = usePathname();
   const locales = ["en", "es"];
 
-  // Mapeo de idiomas a labels personalizados y rutas de banderas
-  const localeData = {
-    en: { label: "English", flag: "/flags/en.png" },
-    es: { label: "Español", flag: "/flags/es.png" },
+  // Obtener el locale actual de la URL o de localStorage
+  const getInitialLocale = () => {
+    // Intenta obtener el locale del localStorage
+    const storedLocale = typeof window !== "undefined" && localStorage.getItem("locale");
+    return storedLocale || pathname.split("/")[1] || "en";
   };
 
-  // Obtén el locale actual de la URL directamente
-  const currentLocale = pathname.split("/")[1] || "en";
+  const [currentLocale, setCurrentLocale] = useState(getInitialLocale);
 
   const handleLocaleChange = (e) => {
     const selectedLocale = e.target.value;
@@ -26,7 +27,14 @@ export default function LanguageSwitcher() {
       `/${selectedLocale}`
     );
 
+    // Guarda el nuevo locale en localStorage
+    localStorage.setItem("locale", selectedLocale);
+
+    // Navega a la nueva ruta con el locale seleccionado
     router.push(newPathname);
+
+    // Actualiza el estado del locale actual
+    setCurrentLocale(selectedLocale);
   };
 
   // Ordena los locales para que el seleccionado esté arriba
@@ -37,21 +45,19 @@ export default function LanguageSwitcher() {
 
   return (
     <div className="d-flex justify-content-end align-items-center">
+      <label htmlFor="languageSwitcher" className="me-2 text-white">
+        Idioma:
+      </label>
       <select
         id="languageSwitcher"
         value={currentLocale}
         onChange={handleLocaleChange}
         className="form-select"
-        style={{ maxWidth: "200px" }}
+        style={{ maxWidth: "150px" }}
       >
         {sortedLocales.map((loc) => (
           <option key={loc} value={loc}>
-            <img
-              src={localeData[loc].flag}
-              alt={`${localeData[loc].label} flag`}
-              style={{ width: "20px", marginRight: "8px" }}
-            />
-            {localeData[loc].label}
+            {loc.toUpperCase()}
           </option>
         ))}
       </select>

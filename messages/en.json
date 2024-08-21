@@ -8,5 +8,12 @@
     "Mission": "Our Mission",
     "Mission_cont": "At Nito, we are dedicated to building innovative solutions that allow          our clients transform their ideas into reality. With a focus          on technical excellence and a commitment to customer satisfaction          client, we use a variety of technologies and methodologies to          ensure that each project is a success.",
     "About": "This is some information from our page"
+  },
+  "Navbar": {
+    "brandName": "Nito",
+    "home": "Inicio",
+    "services": "Servicios",
+    "aboutUs": "Nosotros",
+    "contactUs": "Contáctanos"
   }
 }

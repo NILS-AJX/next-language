@@ -3,11 +3,17 @@
     "welcome": "Bienvenido",
     "description": "Esta es una página de ejemplo"
   },
-
   "About": {
     "Title": "Sobre Nosotros",
     "Mission": "Nuestra Misión",
     "Mission_cont": " En Nito, nos dedicamos a construir soluciones innovadoras que permiten      a nuestros clientes transformar sus ideas en realidad. Con un enfoque          en la excelencia técnica y un compromiso con la satisfacción del          cliente, utilizamos una variedad de tecnologías y metodologías para          garantizar que cada proyecto sea un éxito.",
     "About": "Esta es una paguien información de ala pagina de nosotros"
+  },
+  "Navbar": {
+    "brandName": "Nito",
+    "home": "Home",
+    "services": "Services",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us"
   }
 }
